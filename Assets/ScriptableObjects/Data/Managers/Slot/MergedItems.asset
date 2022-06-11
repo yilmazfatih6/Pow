@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f4b5ca6f3645caa5b3cacecc12aedc, type: 3}
-  m_Name: SlotManager
+  m_Script: {fileID: 11500000, guid: 156f4052644faf645bba864aa1fd4e16, type: 3}
+  m_Name: MergedItems
   m_EditorClassIdentifier: 
-  slots: {fileID: 11400000, guid: 29dad247cd410304f89cc040fb2732d3, type: 2}
-  items: {fileID: 11400000, guid: f5c00e54200ef73408e66098393dce7a, type: 2}
+  _list: []

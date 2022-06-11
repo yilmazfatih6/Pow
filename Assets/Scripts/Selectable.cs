@@ -7,7 +7,7 @@ public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] private GameObject glow;
     [SerializeField] private float movementDuration = 0.5f;
-    [SerializeField] private GameObjectGameEvent onCubeSelect;
+    [SerializeField] private MatchAreaItemManager matchAreaItemManager;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -21,7 +21,9 @@ public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        onCubeSelect.Raise(gameObject);
+        bool isAdded = matchAreaItemManager.AddItem(gameObject);
+
+        if (!isAdded) return;
 
         glow.SetActive(false);
 
