@@ -39,9 +39,15 @@ namespace ScriptableObjectArchitecture
 
         public void Add(T obj)
         {
+            _list.Add(obj);
+        }
+        
+        public void AddUnique(T obj)
+        {
             if (!_list.Contains(obj))
                 _list.Add(obj);
         }
+        
         public void Remove(T obj)
         {
             if (_list.Contains(obj))

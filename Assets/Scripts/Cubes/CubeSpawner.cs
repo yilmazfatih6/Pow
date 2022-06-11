@@ -69,9 +69,11 @@ namespace Cubes
             int textureIndex = 0;
             for (int i = 0; i < _cubePositions.Count; i++)
             {
-                var spawned = Instantiate(cubePrefab, _cubePositions[i], Quaternion.identity, transform);
+                var spawned = Instantiate(cubePrefab, transform);
+                
+                spawned.GetComponent<CubeData>().Inject(_cubeTextures[textureIndex], _cubePositions[i], Quaternion.identity);
+                
                 _cubes.Add(spawned);
-                spawned.GetComponent<Renderer>().material.mainTexture = _cubeTextures[textureIndex];
 
                 if (i != 0 && i % 3 == 0)
                     textureIndex++;
