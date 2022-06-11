@@ -198,4 +198,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glow: {fileID: 608407291895279564}
   movementDuration: 0.5
-  onCubeSelect: {fileID: 11400000, guid: 640aad5507643834c8866099166549f2, type: 2}
+  matchAreaItemManager: {fileID: 11400000, guid: 83b808e45a3f845409f549ca59bf8852, type: 2}
