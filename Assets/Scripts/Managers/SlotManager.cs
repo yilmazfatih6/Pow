@@ -1,8 +1,5 @@
-﻿using System;
-using Cubes;
-using DG.Tweening;
+﻿using DG.Tweening;
 using ScriptableObjectArchitecture;
-using UnityEditor.Build;
 using UnityEngine;
 
 namespace Managers
@@ -12,57 +9,33 @@ namespace Managers
     {
         [SerializeField] private GameObjectCollection slots;
         [SerializeField] private GameObjectCollection items;
-        private int _itemLimit = 7;
+        [SerializeField] private GameEvent onItemsChange;
+        [SerializeField] private float movementDuration = 0.5f;
+
         private void OnEnable()
         {
-            items.Clear();
+            onItemsChange.AddListener(RepositionItems);
         }
 
-        public Transform AddItem(GameObject newItem)
+        private void OnDisable()
         {
-            // Get target slot index if same type of item exists.
-            int targetSlotIndex = -1;
-            bool doesSameExist = false;
-            for (var i = items.Count - 1; i >= 0; i--)
+            onItemsChange.RemoveListener(RepositionItems);
+        }
+
+        private void RepositionItems()
+        {
+            for (int i = 0; i < items.Count; i++)
             {
-                Texture itemTexture = items[i].GetComponent<CubeData>().Texture;
-                Texture newItemTexture = newItem.GetComponent<CubeData>().Texture;
-
-                if (itemTexture == newItemTexture)
-                {
-                    doesSameExist = true;
-                    targetSlotIndex = i + 1;
-                    break;
-                }
+                MoveItem(items[i], slots[i].transform);
             }
-
-            // Else set next empty slot as index.
-            if (targetSlotIndex == -1)
-            {
-                targetSlotIndex = items.Count;
-            }
-            
-            items.AddUnique(newItem);
-
-            if (doesSameExist && items.Count > targetSlotIndex + 1)
-            {
-                var temp = items[targetSlotIndex];
-                items[targetSlotIndex] = newItem;
-                
-                // Shift 
-                int i = targetSlotIndex + 1;
-                while (i < items.Count)
-                {
-                    items[i].transform.DOMove(slots[i+1].transform.position, 0.5f);
-                    i++;
-                }
-                
-                items[targetSlotIndex + 1] = temp;
-                temp.transform.DOMove(slots[targetSlotIndex + 1].transform.position, 0.5f);
-
-            }
-            
-            return slots[targetSlotIndex].transform;
+        }
+        
+        private void MoveItem(GameObject item, Transform targetTransform)
+        {
+            item.transform.SetParent(targetTransform);
+            item.transform.localScale = Vector3.one;
+            item.transform.DOMove(targetTransform.position, movementDuration);
+            item.transform.DORotateQuaternion(targetTransform.rotation, movementDuration);
         }
     }
 }

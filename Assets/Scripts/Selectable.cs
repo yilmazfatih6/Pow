@@ -1,14 +1,14 @@
-﻿using DG.Tweening;
-using Managers;
+﻿using Managers;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private GameObject glow;
-    [SerializeField] private SlotManager slotManager;
     [SerializeField] private float movementDuration = 0.5f;
-    
+    [SerializeField] private GameObjectGameEvent onCubeSelect;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         glow.SetActive(true);
@@ -21,14 +21,9 @@ public class Selectable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        glow.SetActive(false);
+        onCubeSelect.Raise(gameObject);
 
-        var targetTransform = slotManager.AddItem(gameObject);
-        
-        transform.SetParent(targetTransform);
-        transform.localScale = Vector3.one;
-        transform.DOMove(targetTransform.position, movementDuration);
-        transform.DORotateQuaternion(targetTransform.rotation, movementDuration);
+        glow.SetActive(false);
 
         SetLayer();
         
