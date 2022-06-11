@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 
 namespace Cubes
@@ -6,23 +7,23 @@ namespace Cubes
     public class CubeSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject cubePrefab;
+        [SerializeField] private GameObjectCollection sceneItems;
         [SerializeField] private int spawnCount;
         [SerializeField] private List<Texture> textures = new List<Texture>();
     
-        private readonly List<GameObject> _cubes = new List<GameObject>();
-        private readonly List<Vector3> _gridPositions = new List<Vector3>();
-        private readonly List<Texture> _cubeTextures = new List<Texture>();
-        private readonly List<Vector3> _cubePositions = new List<Vector3>();
+        private  List<Vector3> _gridPositions = new List<Vector3>();
+        private  List<Texture> _cubeTextures = new List<Texture>();
+        private  List<Vector3> _cubePositions = new List<Vector3>();
 
         private void Start()
         {
-            AssignCubePositions();
+            AssignGridPositions();
             SetTexturesToSpawn();
             SetCubeSpawnPositions();
             SpawnCubes();
         }
 
-        private void AssignCubePositions()
+        private void AssignGridPositions()
         {
             var cubeRenderer = cubePrefab.GetComponent<Renderer>();
             var cubeBounds = cubeRenderer.bounds;
@@ -33,11 +34,11 @@ namespace Cubes
                 {
                     for (var k = 0; k < 4; k++)
                     {
-                        Vector3 cubePosition;
-                        cubePosition.x = (cubeBounds.extents.x * 2) * i;
-                        cubePosition.y = (cubeBounds.extents.y * 2) * j;
-                        cubePosition.z = (cubeBounds.extents.z * 2) * k;
-                        _gridPositions.Add(transform.position + cubePosition);
+                        Vector3 gridPositions;
+                        gridPositions.x = (cubeBounds.extents.x * 2) * i;
+                        gridPositions.y = (cubeBounds.extents.y * 2) * j;
+                        gridPositions.z = (cubeBounds.extents.z * 2) * k;
+                        _gridPositions.Add(transform.position + gridPositions);
                     }
                 }
             }
@@ -66,17 +67,23 @@ namespace Cubes
     
         private void SpawnCubes()
         {
+            sceneItems.Clear();
+
             int textureIndex = 0;
             for (int i = 0; i < _cubePositions.Count; i++)
             {
                 var spawned = Instantiate(cubePrefab, transform);
                 
+                Debug.Log("_cubeTextures[textureIndex] " + _cubeTextures[textureIndex].name);
                 spawned.GetComponent<CubeData>().Inject(_cubeTextures[textureIndex], _cubePositions[i], Quaternion.identity);
                 
-                _cubes.Add(spawned);
+                sceneItems.Add(spawned);
 
-                if (i != 0 && i % 3 == 0)
+                if (i % 3 == 2)
+                {
+                    Debug.Log("increase texture index, i : " + i);
                     textureIndex++;
+                }
             }
         }
     }
