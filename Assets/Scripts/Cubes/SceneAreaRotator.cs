@@ -5,6 +5,7 @@ namespace Cubes
 {
     public class SceneAreaRotator : MonoBehaviour
     {
+        [SerializeField] private float rotationSpeed = 1f;
         [SerializeField] private FloatVariable horizontalSwipe;
         [SerializeField] private FloatVariable verticalSwipe;
 
@@ -22,12 +23,12 @@ namespace Cubes
 
         private void OnHorizontalSwipeChange(float value)
         {
-            transform.Rotate(Vector3.up, -horizontalSwipe.Value, Space.World);
+            transform.Rotate(Vector3.up, -horizontalSwipe.Value * rotationSpeed * Time.deltaTime, Space.World);
         }
         
         private void OnVerticalSwipeChange(float value)
         {
-            transform.Rotate(Vector3.forward, verticalSwipe.Value, Space.World);
+            transform.Rotate(Vector3.forward, verticalSwipe.Value * rotationSpeed * Time.deltaTime, Space.World);
         }
     }
 }
