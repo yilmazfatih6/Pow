@@ -175,8 +175,6 @@ namespace Managers
                 index++;
             }
             
-            DebugNames();
-
             return movementTween;
         }
 

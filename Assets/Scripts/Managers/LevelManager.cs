@@ -43,7 +43,6 @@ namespace Managers
         
         private void CheckComplete()
         {
-            Debug.Log("sceneItems.Count " + sceneItems.Count);
             if (sceneItems.Count == 0)
             {
                 Complete();

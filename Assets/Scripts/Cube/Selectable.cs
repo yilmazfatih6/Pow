@@ -11,6 +11,7 @@ namespace Cube
         [SerializeField] private CubeMovementController cubeMovementController;
         [SerializeField] private GameObject glow;
         [SerializeField] private GameObjectGameEvent onSelect;
+        [SerializeField] private GameObjectGameEvent onHintSelect;
         private bool _isActive = true;    
     
         public event Action OnFocus; 
@@ -20,11 +21,13 @@ namespace Cube
         private void OnEnable()
         {
             cubeMovementController.OnMoveToOriginalPositionComplete += Activate;
+            onHintSelect.AddListener(OnHintSelect);
         }
 
         private void OnDisable()
         {
             cubeMovementController.OnMoveToOriginalPositionComplete -= Activate;
+            onHintSelect.RemoveListener(OnHintSelect);
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -44,14 +47,22 @@ namespace Cube
         public void OnPointerClick(PointerEventData eventData)
         {
             if (!_isActive) return;
-
-            onSelect.Raise(gameObject);
-
-            OnClick?.Invoke();
-        
             _isActive = false;
+            Select();
         }
 
+        private void Select()
+        {
+            onSelect.Raise(gameObject);
+            OnClick?.Invoke();
+        }
+        
+        private void OnHintSelect(GameObject value)
+        {
+            if (value != gameObject) return;
+            Select();
+        }
+        
         private void Activate()
         {
             _isActive = true;

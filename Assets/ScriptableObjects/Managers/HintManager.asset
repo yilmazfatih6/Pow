@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58dfb37ccd8d4d9a8c11dc5809f9c40f, type: 3}
+  m_Name: HintManager
+  m_EditorClassIdentifier: 
+  selectionInterval: 0.1
+  onHintButtonClick: {fileID: 11400000, guid: dc9ce4879e0629043a5a538a9076742a, type: 2}
+  onHintSelect: {fileID: 11400000, guid: 943700818e857fa4385c136b9d5e5f27, type: 2}
+  sceneAreaCubes: {fileID: 11400000, guid: 24a5fc0d8fad94346a59bb46d79ba69c, type: 2}
+  matchAreaCubes: {fileID: 11400000, guid: f5c00e54200ef73408e66098393dce7a, type: 2}

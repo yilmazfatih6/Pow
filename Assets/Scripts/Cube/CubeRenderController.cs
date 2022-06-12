@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 
 namespace Cube
 {
@@ -8,6 +9,8 @@ namespace Cube
         [SerializeField] private Selectable selectable;
         [SerializeField] private new Renderer renderer;
         [SerializeField] private GameObject glow;
+        [SerializeField] private GameObject mark;
+        [SerializeField] private float markDuration = 2f;
         public Texture Texture => renderer.material.mainTexture;
 
         private void OnEnable()
@@ -33,9 +36,10 @@ namespace Cube
             renderer.material.mainTexture = texture;
         }
 
-        public void OnSelect()
+        public void Mark()
         {
-            glow.SetActive(true);
+            mark.SetActive(true);
+            DOVirtual.DelayedCall(markDuration, () => mark.SetActive(false));
         }
 
         private void EnableGlow()
