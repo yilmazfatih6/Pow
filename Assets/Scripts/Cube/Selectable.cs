@@ -10,7 +10,6 @@ namespace Cube
     {
         [SerializeField] private CubeMovementController cubeMovementController;
         [SerializeField] private GameObject glow;
-        [SerializeField] private float movementDuration = 0.5f;
         [SerializeField] private GameObjectGameEvent onSelect;
         private bool _isActive = true;    
     

@@ -3,19 +3,22 @@ using Cube;
 using ScriptableObjectArchitecture;
 using UnityEngine;
 
-namespace Cubes
+namespace SceneArea
 {
     public class CubeSpawner : MonoBehaviour
     {
-        [SerializeField] private Transform center;
+        [Header("References")]
         [SerializeField] private GameObject cubePrefab;
-        [SerializeField] private int spawnCount;
         [SerializeField] private List<Texture> textures = new List<Texture>();
+        
+        [Header("Raised Events")]
         [SerializeField] private GameObjectGameEvent onSpawn;
+        
+        [Header("SO Data")]
         [SerializeField] private Vector3Collection sceneAreaPositions;
-    
-        private  List<Texture> _cubeTextures = new List<Texture>();
-        private  List<Vector3> _cubePositions = new List<Vector3>();
+
+        private readonly int _spawnCount = 42;
+        private readonly List<Texture> _cubeTextures = new List<Texture>();
 
         private void Start()
         {
@@ -49,7 +52,7 @@ namespace Cubes
 
         private void SetTexturesToSpawn()
         {
-            for (int i = 0; i < spawnCount / 3; i++)
+            for (int i = 0; i < _spawnCount / 3; i++)
             {
                 int textureIndex = Random.Range(0, textures.Count - 1);
                 Texture texture = textures[textureIndex];
@@ -58,12 +61,10 @@ namespace Cubes
             }
         }
     
-        
-    
         private void SpawnCubes()
         {
             int textureIndex = 0;
-            for (int i = 0; i < spawnCount; i++)
+            for (int i = 0; i < _spawnCount; i++)
             {
                 var spawned = Instantiate(cubePrefab);
                 spawned.GetComponent<CubeRenderController>().Inject(_cubeTextures[textureIndex]);

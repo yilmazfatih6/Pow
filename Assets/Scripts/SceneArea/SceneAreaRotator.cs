@@ -1,7 +1,7 @@
 ﻿using ScriptableObjectArchitecture;
 using UnityEngine;
 
-namespace Cubes
+namespace SceneArea
 {
     public class SceneAreaRotator : MonoBehaviour
     {
