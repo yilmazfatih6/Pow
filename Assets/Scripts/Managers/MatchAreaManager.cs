@@ -84,6 +84,8 @@ namespace Managers
             cubeMovement.MoveToOriginalPosition();
             
             Remove(lastCube);
+            
+            RepositionAll();
 
             onUndo.Raise();
         }
