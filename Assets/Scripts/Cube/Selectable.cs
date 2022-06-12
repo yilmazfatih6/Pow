@@ -1,5 +1,6 @@
 ﻿using System;
 using Managers;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,7 +11,7 @@ namespace Cube
         [SerializeField] private CubeMovementController cubeMovementController;
         [SerializeField] private GameObject glow;
         [SerializeField] private float movementDuration = 0.5f;
-        [SerializeField] private MatchAreaItemManager matchAreaItemManager;
+        [SerializeField] private GameObjectGameEvent onSelect;
         private bool _isActive = true;    
     
         public event Action OnFocus; 
@@ -45,8 +46,7 @@ namespace Cube
         {
             if (!_isActive) return;
 
-            bool isAdded = matchAreaItemManager.AddItem(gameObject);
-            if (!isAdded) return;
+            onSelect.Raise(gameObject);
 
             OnClick?.Invoke();
         

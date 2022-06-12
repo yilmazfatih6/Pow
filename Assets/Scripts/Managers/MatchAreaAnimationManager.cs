@@ -10,8 +10,7 @@ namespace Managers
     [CreateAssetMenu(fileName = "MatchAreaAnimationManager", menuName = "ScriptableObject/MatchAreaAnimationManager", order = 0)]
     public class MatchAreaAnimationManager : ScriptableObject
     {
-        [SerializeField] private MatchAreaItemManager matchAreaItemManager;
-        [SerializeField] private GameObjectCollection slots;
+        [SerializeField] private MatchAreaManager matchAreaManager;
         [SerializeField] private GameObjectCollection items;
         [SerializeField] private float movementDuration = 0.5f;
         [SerializeField] private GameObjectCollection mergedItems;
@@ -29,46 +28,31 @@ namespace Managers
 
         private void OnEnable()
         {
-            onItemAdd.AddListener(RepositionItems);
-            onItemRemove.AddListener(RepositionItems);
+            // onItemAdd.AddListener(RepositionItems);
+            // onItemRemove.AddListener(RepositionItems);
             onMerge.AddListener(MergeItems);
             onUndo.AddListener(ReplaceUndoItem);
         }
         
         private void OnDestroy()
         {
-            onItemAdd.RemoveListener(RepositionItems);
-            onItemRemove.RemoveListener(RepositionItems);
+            // onItemAdd.RemoveListener(RepositionItems);
+            // onItemRemove.RemoveListener(RepositionItems);
             onMerge.RemoveListener(MergeItems);
             onUndo.RemoveListener(ReplaceUndoItem);
         }
 
-        private Tween MoveItem(GameObject item, Transform targetTransform)
-        {
-            Debug.Log("MoveItem");
-            item.transform.SetParent(targetTransform);
-            item.transform.localScale = Vector3.one;
-            item.transform.DOMove(targetTransform.position, movementDuration);
-            return item.transform.DORotateQuaternion(targetTransform.rotation, movementDuration);
-        }
+        // private Tween MoveItem(GameObject item, Transform targetTransform)
+        // {
+        //     
+        // }
 
-        private void RepositionItems()
-        {
-            Tween tween = null;
-
-            for (int i = 0; i < items.Count; i++)
-            {
-                if(i == 0) tween = MoveItem(items[i], slots[i].transform);
-                else MoveItem(items[i], slots[i].transform);
-            }
-            
-            tween.OnComplete(() => onRepositionAnimationComplete.Raise());
-        }
+        
 
         private void MergeItems()
         {
-            MoveItem(mergedItems[1], mergedItems[0].transform);
-            MoveItem(mergedItems[2], mergedItems[0].transform).OnComplete(() => onMergeAnimationComplete.Raise());
+            // MoveItem(mergedItems[1], mergedItems[0].transform);
+            // MoveItem(mergedItems[2], mergedItems[0].transform).OnComplete(() => onMergeAnimationComplete.Raise());
         }
 
         private void ReplaceUndoItem()

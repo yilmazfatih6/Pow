@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca2962ada1e47b483c7d938eb7aa54d, type: 3}
   m_Name: StarManager
   m_EditorClassIdentifier: 
-  onMergeAnimationComplete: {fileID: 11400000, guid: 068e121f3f5f6114d91c682ba06c2234, type: 2}
+  onMergeAnimationComplete: {fileID: 11400000, guid: 5b9293a10ec5dcd489798f33d4e0e127, type: 2}
   totalStarCount: {fileID: 11400000, guid: 49343665a1f6539439584c3bd0044d98, type: 2}
   starMultiplier: {fileID: 11400000, guid: d35ede6d89786f64191d2559787cc2be, type: 2}

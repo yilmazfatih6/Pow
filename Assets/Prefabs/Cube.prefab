@@ -216,4 +216,4 @@ MonoBehaviour:
   cubeMovementController: {fileID: 128464661086949191}
   glow: {fileID: 608407291895279564}
   movementDuration: 0.5
-  matchAreaItemManager: {fileID: 11400000, guid: 83b808e45a3f845409f549ca59bf8852, type: 2}
+  onSelect: {fileID: 11400000, guid: d1acb27f1126af742b80779b6d5668dc, type: 2}

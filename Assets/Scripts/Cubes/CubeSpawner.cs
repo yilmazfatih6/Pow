@@ -7,12 +7,13 @@ namespace Cubes
 {
     public class CubeSpawner : MonoBehaviour
     {
+        [SerializeField] private Transform center;
         [SerializeField] private GameObject cubePrefab;
-        [SerializeField] private GameObjectCollection sceneItems;
         [SerializeField] private int spawnCount;
         [SerializeField] private List<Texture> textures = new List<Texture>();
+        [SerializeField] private GameObjectGameEvent onSpawn;
+        [SerializeField] private Vector3Collection sceneAreaPositions;
     
-        private  List<Vector3> _gridPositions = new List<Vector3>();
         private  List<Texture> _cubeTextures = new List<Texture>();
         private  List<Vector3> _cubePositions = new List<Vector3>();
 
@@ -20,7 +21,6 @@ namespace Cubes
         {
             AssignGridPositions();
             SetTexturesToSpawn();
-            SetCubeSpawnPositions();
             SpawnCubes();
         }
 
@@ -29,6 +29,8 @@ namespace Cubes
             var cubeRenderer = cubePrefab.GetComponent<Renderer>();
             var cubeBounds = cubeRenderer.bounds;
 
+            sceneAreaPositions.Clear();
+            
             for (var i = 0; i < 4; i++)
             {
                 for (var j = 0; j < 4; j++)
@@ -39,7 +41,7 @@ namespace Cubes
                         gridPositions.x = (cubeBounds.extents.x * 2) * i;
                         gridPositions.y = (cubeBounds.extents.y * 2) * j;
                         gridPositions.z = (cubeBounds.extents.z * 2) * k;
-                        _gridPositions.Add(gridPositions);
+                        sceneAreaPositions.Add(gridPositions);
                     }
                 }
             }
@@ -56,28 +58,17 @@ namespace Cubes
             }
         }
     
-        private void SetCubeSpawnPositions()
-        {
-            for (int i = 0; i < spawnCount; i++)
-            {
-                var rand = Random.Range(0, _gridPositions.Count - 1);
-                _cubePositions.Add(_gridPositions[rand]);
-                _gridPositions.RemoveAt(rand);
-            }
-        }
+        
     
         private void SpawnCubes()
         {
-            sceneItems.Clear();
-
             int textureIndex = 0;
-            for (int i = 0; i < _cubePositions.Count; i++)
+            for (int i = 0; i < spawnCount; i++)
             {
                 var spawned = Instantiate(cubePrefab);
                 spawned.GetComponent<CubeRenderController>().Inject(_cubeTextures[textureIndex]);
-                spawned.GetComponent<CubeMovementController>().Inject(_cubePositions[i], transform);
 
-                sceneItems.Add(spawned);
+                onSpawn.Raise(spawned);
 
                 if (i % 3 == 2)
                     textureIndex++;

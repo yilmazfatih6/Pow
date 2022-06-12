@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd1d56e3d1c422fa008540bea4d3be4, type: 3}
+  m_Name: SceneAreaManager
+  m_EditorClassIdentifier: 
+  sceneCubes: {fileID: 11400000, guid: 24a5fc0d8fad94346a59bb46d79ba69c, type: 2}
+  sceneAreaPositions: {fileID: 11400000, guid: 461bb818da1c69745b895303a69f8955, type: 2}
+  sceneArea: {fileID: 11400000, guid: 2a41f64bff3f7f24b94e0b274f894369, type: 2}
+  onSceneAreaPositionSet: {fileID: 11400000, guid: c2e34b942ba6ee4449df8ecca4419f8c, type: 2}
+  onSpawn: {fileID: 11400000, guid: 2bca9b7540ecdd345b8fa6167276ff26, type: 2}
+  onAdd: {fileID: 11400000, guid: a2aa0e3cc9409d543bf344cc27cbea9b, type: 2}
+  onUndo: {fileID: 11400000, guid: dbe8d6225558087448308547e49c24c3, type: 2}

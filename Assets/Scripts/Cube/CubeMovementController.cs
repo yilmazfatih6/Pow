@@ -13,10 +13,9 @@ namespace Cube
         private Vector3 _initialLocalPosition;
         private Transform _initialParent;
 
-        public event Action OnMoveToOriginalPositionBegin; 
         public event Action OnMoveToOriginalPositionComplete; 
 
-        public void Inject(Vector3 pos, Transform parent)
+        public void SetInitialPosition(Vector3 pos, Transform parent)
         {
             var t = transform;
             t.SetParent(parent);
@@ -30,15 +29,27 @@ namespace Cube
 
         public void MoveToOriginalPosition()
         {
-            OnMoveToOriginalPositionBegin?.Invoke();
-            
             var t = transform;
-            Debug.Log("_initialParent " + _initialParent);
-            transform.parent = _initialParent;
+            t.parent = _initialParent;
             t.localScale = Vector3.one;
             t.DOLocalMove(_initialLocalPosition, movementDuration.Value);
             t.DOLocalRotateQuaternion(Quaternion.identity, movementDuration.Value)
                 .OnComplete(() => OnMoveToOriginalPositionComplete?.Invoke());
+        }
+
+        public Tween MoveToMatchArea(Transform targetTransform)
+        {
+            var t = transform;
+            t.SetParent(targetTransform);
+            t.localScale = Vector3.one;
+            t.DOMove(targetTransform.position, movementDuration.Value);
+            return transform.DORotateQuaternion(targetTransform.rotation, movementDuration.Value);
+        }
+
+        public Tween Merge(Transform targetTransform)
+        {
+            var t = transform;
+            return t.DOMove(targetTransform.position, movementDuration.Value);
         }
     }
 }

@@ -17,4 +17,4 @@ MonoBehaviour:
   onLevelComplete: {fileID: 11400000, guid: 5e9ca3bba04057f488723b39a13a1596, type: 2}
   onLevelFail: {fileID: 11400000, guid: 4dca13a79b211444294dbf5364d578f0, type: 2}
   onNotMerge: {fileID: 11400000, guid: 758d54566a9382642be64dcdb14c6390, type: 2}
-  onMergeAnimationComplete: {fileID: 11400000, guid: 068e121f3f5f6114d91c682ba06c2234, type: 2}
+  onMergeAnimationComplete: {fileID: 11400000, guid: 5b9293a10ec5dcd489798f33d4e0e127, type: 2}

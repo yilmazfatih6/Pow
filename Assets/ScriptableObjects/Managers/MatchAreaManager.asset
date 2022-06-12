@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2508aa0c50f4eaaa84460b0e4a0d1d1, type: 3}
+  m_Name: MatchAreaManager
+  m_EditorClassIdentifier: 
+  matchAreaCubes: {fileID: 11400000, guid: f5c00e54200ef73408e66098393dce7a, type: 2}
+  matchAreaCubesByAdditionOrder: {fileID: 11400000, guid: cf952d53870cd2541afdd95265f08af5, type: 2}
+  mergedCubes: {fileID: 11400000, guid: eba86df4a20e46247a5e0d9e2153d1b4, type: 2}
+  slots: {fileID: 11400000, guid: 29dad247cd410304f89cc040fb2732d3, type: 2}
+  onSelect: {fileID: 11400000, guid: d1acb27f1126af742b80779b6d5668dc, type: 2}
+  onRepositionAnimationComplete: {fileID: 11400000, guid: 44fa5e3ccac3b2f4bbffe4776afdf199, type: 2}
+  onMergeAnimationComplete: {fileID: 11400000, guid: 068e121f3f5f6114d91c682ba06c2234, type: 2}
+  onUndoButtonClick: {fileID: 11400000, guid: 003b10c2edb4bed4fa8e8e499f292352, type: 2}
+  onAdd: {fileID: 11400000, guid: a2aa0e3cc9409d543bf344cc27cbea9b, type: 2}
+  onRemove: {fileID: 11400000, guid: d44d09f2864297541894acc09a30b3d5, type: 2}
+  onUndo: {fileID: 11400000, guid: dbe8d6225558087448308547e49c24c3, type: 2}
+  onMerge: {fileID: 11400000, guid: 5b9293a10ec5dcd489798f33d4e0e127, type: 2}
+  onNotMerge: {fileID: 11400000, guid: 758d54566a9382642be64dcdb14c6390, type: 2}
