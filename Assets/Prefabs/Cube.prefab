@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 810bca83a0e947444ad5cd8e21ba4cec, type: 2}
     - target: {fileID: 919132149155446097, guid: 8a6af86dc186e0c4da14b141d12de1c0, type: 3}
       propertyPath: m_Name
-      value: Cube
+      value: Glow
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8a6af86dc186e0c4da14b141d12de1c0, type: 3}
       propertyPath: m_IsActive
@@ -183,7 +183,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46290debb462419fb1290b647d5f6dcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeMovementController: {fileID: 128464661086949191}
+  selectable: {fileID: 979402731842384248}
   renderer: {fileID: 598258932429133919}
+  glow: {fileID: 608407291895279564}
+--- !u!114 &128464661086949191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390923047724857738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7d7f0bedba4603b672adceb8ffe236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementDuration: {fileID: 11400000, guid: 541ebec25ced599429279d6411574830, type: 2}
+  selectable: {fileID: 979402731842384248}
 --- !u!114 &979402731842384248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23c817f4059c49c1a88c5f989bbb29b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeMovementController: {fileID: 128464661086949191}
   glow: {fileID: 608407291895279564}
   movementDuration: 0.5
   matchAreaItemManager: {fileID: 11400000, guid: 83b808e45a3f845409f549ca59bf8852, type: 2}

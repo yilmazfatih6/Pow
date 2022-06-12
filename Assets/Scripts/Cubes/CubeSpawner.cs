@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cube;
 using ScriptableObjectArchitecture;
 using UnityEngine;
 
@@ -38,7 +39,7 @@ namespace Cubes
                         gridPositions.x = (cubeBounds.extents.x * 2) * i;
                         gridPositions.y = (cubeBounds.extents.y * 2) * j;
                         gridPositions.z = (cubeBounds.extents.z * 2) * k;
-                        _gridPositions.Add(transform.position + gridPositions);
+                        _gridPositions.Add(gridPositions);
                     }
                 }
             }
@@ -72,18 +73,14 @@ namespace Cubes
             int textureIndex = 0;
             for (int i = 0; i < _cubePositions.Count; i++)
             {
-                var spawned = Instantiate(cubePrefab, transform);
-                
-                Debug.Log("_cubeTextures[textureIndex] " + _cubeTextures[textureIndex].name);
-                spawned.GetComponent<CubeData>().Inject(_cubeTextures[textureIndex], _cubePositions[i], Quaternion.identity);
-                
+                var spawned = Instantiate(cubePrefab);
+                spawned.GetComponent<CubeRenderController>().Inject(_cubeTextures[textureIndex]);
+                spawned.GetComponent<CubeMovementController>().Inject(_cubePositions[i], transform);
+
                 sceneItems.Add(spawned);
 
                 if (i % 3 == 2)
-                {
-                    Debug.Log("increase texture index, i : " + i);
                     textureIndex++;
-                }
             }
         }
     }
